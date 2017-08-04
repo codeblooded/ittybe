@@ -86,4 +86,8 @@ $(function() {
       $('.copy-btn').hide();
     }
   });
+
+
+
+  console.log('Hola, Hacker! Welcome to the JavaScript console.\nThe itty.be project is actually open source.\nCheck it out at http://github.com/codeblooded/ittybe.');
 });
