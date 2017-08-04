@@ -49,16 +49,6 @@ class App < Sinatra::Base
     end
   end
 
-  get '/:short_path' do
-    url_service = UrlService.new
-    long_url = url_service.read(params[:short_path])
-    if long_url.nil?
-      halt 404
-    else
-      redirect long_url
-    end
-  end
-
   get '/terms' do
     erb :terms
   end
@@ -70,5 +60,15 @@ class App < Sinatra::Base
   get "/assets/*" do
     env["PATH_INFO"].sub!("/assets", "")
     settings.environment.call(env)
+  end
+
+  get '/:short_path' do
+    url_service = UrlService.new
+    long_url = url_service.read(params[:short_path])
+    if long_url.nil?
+      halt 404
+    else
+      redirect long_url
+    end
   end
 end
