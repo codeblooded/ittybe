@@ -1,10 +1,13 @@
 # [itty.be]
 
+<a href="https://vimeo.com/228435932?autoplay=true"><img src="http://i.imgur.com/mdjmAWv.png" width="400px" /></a>
+
 The [itty.be] project is a simple url shortener which values privacy. There's no analytics, ads, or tracking software of any kind.
 Literally, it's just a url shortener.
 
-Proudly built in Ruby with Sinatra as the framework and Redis as the database. It's really a single page app which makes requests over AJAX.
-Presently, it's deployed on Heroku. Feel free to use it, fork the project, contribute some pull requests, and show some love with those stars.
+Proudly built in Ruby with Sinatra as the framework and Redis as the database. It's really a single page app which makes requests over AJAX. Feel free to use it, fork the project, contribute some pull requests, and show some love with those stars.
+
+
 
 ## API
 
@@ -26,6 +29,16 @@ And, you'll get back something like this:
     }
 }
 ```
+
+## Deploying Your Own Shortener
+
+This project is designed to be a backbone for building other url shorteners. It's super simple to customize. Clone the repo, and edit the [config.yml](http://github.com/codeblooded/ittybe/tree/master/config.yml) file to use your domain name and adjust the length of the paths if you so choose.
+
+Then, the project is easily deployable. It's deployed on Heroku right now, and you can successfully scale it using Heroku Redis. In the future, I hope to add docker support.
+
+## Contributing
+
+If you're reading this section, you're already awesome!  Feel free to send PRs, open issues, and share the project with your friends. As for style guidelines, I generally like to follow the [bbatsov/ruby-style-guide](http://github.com/bbatsov/ruby-style-guide). Logically name your commits, and don't push to the master branch if granted commit access. Master is always directly deployed on Heroku.
 
 ## License
 
