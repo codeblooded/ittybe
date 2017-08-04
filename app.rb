@@ -1,15 +1,16 @@
 require 'sinatra/base'
 require 'sprockets'
-require 'sass'
 require 'json'
 require 'securerandom'
 require 'uri'
+require 'yaml'
 require 'dotenv/load'
 require_relative 'services/url_service'
-
+CONFIGURATION = YAML.load_file('config.yml')
 
 class App < Sinatra::Base
-  set :url, 'itty.be'
+  set :url, CONFIGURATION['url']
+  set :short_path_length, CONFIGURATION['short_path_length']
   set :environment, Sprockets::Environment.new
   environment.append_path("assets/stylesheets")
   environment.append_path("assets/javascripts")
@@ -20,16 +21,16 @@ class App < Sinatra::Base
 
   post '/shorten', provides: :json do
     pass unless request.accept? 'application/json'
-    long_url = JSON.parse(request.body.read)["url"]
-    long_url = "http://#{long_url}" unless long_url.start_with? "http"
+    long_url = JSON.parse(request.body.read)['url']
+    long_url = "http://#{long_url}" unless long_url.start_with? 'http'
     begin
       # Check URL validity
       URI.parse(long_url)
 
       # Create short link
       url_service = UrlService.new
-      short_path = url_service.create(long_url)
-      short_url = "http://itty.be/#{short_path}"
+      short_path = url_service.create(long_url, settings.short_path_length)
+      short_url = "http://#{settings.url}/#{short_path}"
 
       res = {
         url: {
