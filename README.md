@@ -38,36 +38,18 @@ Then, the project is easily deployable. It's deployed on Heroku right now, and y
 
 If you're reading this section, you're already awesome!  Feel free to send PRs, open issues, and share the project with your friends. As for style guidelines, I generally like to follow the [bbatsov/ruby-style-guide](http://github.com/bbatsov/ruby-style-guide). Logically name your commits, and don't push to the master branch if granted commit access. Master is always directly deployed on Heroku.
 
-## Testing
+## Testing <img src="https://img.shields.io/codeship/a9aff230-5c51-0135-594b-3e3c953d0b79/master.svg" />
 
 The [itty.be] url shortener is tested using rspec. You can run the tests using
 the following command:
 
     $ bundle exec rspec .
 
-[CodeShip], a continuous integration service, pulls all changes and runs the tests to see if they break. It updates the following badges below:
-
-<table>
-  <tr>
-    <td>master</td>
-    <td>
-      <img src="https://img.shields.io/codeship/a9aff230-5c51-0135-594b-3e3c953d0b79/master.svg" />
-    </td>
-  </tr>
-  <tr>
-    <td>dev</td>
-    <td>
-      <img src="https://img.shields.io/codeship/a9aff230-5c51-0135-594b-3e3c953d0b79/dev.svg" />
-    </td>
-  </tr>
-</table>
-
 ## License
 
 Source code released under the [MIT License]. This project makes use of several open source projects licensed under different terms. Please see the [Gemfile] for a current listing.
 
 [itty.be]: http://itty.be
-[CodeShip]: https://app.codeship.com/projects/237839
 [MIT License]: http://github.com/codeblooded/ittybe/tree/master/LICENSE
 [Terms of Service]: http://itty.be/terms
 [Gemfile]: http://github.com/codeblooded/ittybe/tree/master/Gemfile
