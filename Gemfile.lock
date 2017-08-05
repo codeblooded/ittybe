@@ -9,6 +9,8 @@ GEM
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
     rake (12.0.0)
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
@@ -47,6 +49,8 @@ PLATFORMS
 
 DEPENDENCIES
   dotenv
+  rack
+  rack-test
   rake
   redis
   rspec
