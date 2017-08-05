@@ -1,7 +1,19 @@
+$background-color: #F4F4F4;
+$standard-text-color: #313131;
+$highlight-color: #4990E2;
+$footer-light-color: #B4B4B4;
+
+$standard-font: 'Open Sans', sans-serif;
+$header-font: 'Zilla Slab', sans-serif;
+
+$mobile: "(max-width:#{690px})";
+$tablet: "(max-width:#{995px})";
+$desktop: "(max-width:#{1440px})";
+
 body {
-  background-color: #F4F4F4;
-  font-family: 'Open Sans', sans-serif;
-  color: #313131;
+  background-color: $background-color;
+  font-family: $standard-font;
+  color: $standard-text-color;
   padding: 0px 0px;
   margin: 0;
   height: 100%;
@@ -16,27 +28,37 @@ body {
   width: 40em;
   margin: 0 auto;
   min-height: calc(100vh - 35px);
+
+  @media #{$mobile} {
+    width: 85%;
+  }
 }
 
 h1 {
   font-size: 48px;
-  font-family: 'Zilla Slab', sans-serif;
+  font-family: $header-font;
   text-align: center;
   padding-top: 2em;
+
+  @media #{$mobile} {
+    font-size: 64px;
+    padding-top: 1em;
+  }
 }
 
 h2 {
   font-size: 32px;
-  font-family: 'Zilla Slab', sans-serif;
+  font-family: $header-font;
   text-align: center;
   padding-top: 1em;
 }
 
 span.header-highlight {
-  color: #4990E2;
+  color: $highlight-color;
 }
 
 #input-field {
+  font-size: 12px;
   margin-top: -1.5em;
   width: 100%;
   height: 3.5em;
@@ -45,20 +67,37 @@ span.header-highlight {
   border-radius: 5px;
   outline-style: none;
   display: inline-block;
+
+  @media #{$mobile} {
+    font-size: 16px;
+  }
 }
 
 .copy-btn {
-  margin-top: -36px;
-  background-color: #F4F4F4;
-  height: 34px;
-  // margin-left: 83%;
+  margin-top: -40px;
+  background-color: $background-color;
+  height: 38px;
   position: relative;
   left: 83%;
   border-style: none;
   border-radius: 5px;
 
+  @media #{$mobile} {
+    background-color: $standard-text-color;
+    color: white;
+    display: block;
+    margin: 5px auto 0 auto;
+    left: 0;
+    width: 70%;
+
+    &:hover {
+      background-color: $highlight-color;
+      color: white;
+    }
+  }
+
   &:hover {
-    background-color: #4990E2;
+    background-color: $highlight-color;
     color: white;
   }
 }
@@ -66,10 +105,8 @@ span.header-highlight {
 footer {
   width: 100%;
   height: 35px;
-  background: #313131;
+  background: $standard-text-color;
   color: white;
-  // position: absolute;
-  // bottom: 0;
   margin: 0px;
   list-style: none;
   font-size: 1em;
@@ -92,13 +129,13 @@ footer {
     font-size: 1em;
     margin: 0.5em 0 0 0;
 
-    font-family: 'Zilla Slab', sans-serif;
+    font-family: $header-font;
 
     .footer-highlight {
-      color: #B4B4B4;
+      color: $footer-light-color;
 
       &:hover {
-        color: #4990E2;
+        color: $highlight-color;
       }
     }
   }
@@ -108,7 +145,7 @@ footer {
     text-decoration: none;
 
     &:hover {
-      color: #B4B4B4;
+      color: $footer-light-color;
     }
   }
 }
