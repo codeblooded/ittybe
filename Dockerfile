@@ -1,5 +1,7 @@
 FROM ruby:2.4.1-alpine
 
+MAINTAINER Ben Reed
+
 ENV REDIS_URL=redis://redis_db:6379
 
 RUN apk update && apk upgrade
@@ -7,11 +9,11 @@ RUN apk add --update alpine-sdk
 RUN apk add ruby-bundler
 
 WORKDIR /app
-ADD Gemfile /app/Gemfile
-ADD Gemfile.lock /app/Gemfile.lock
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install --system
 
-ADD . /app
+COPY . /app
 RUN bundle install --system
 
 EXPOSE 9292
