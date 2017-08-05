@@ -1,6 +1,6 @@
 FROM ruby:2.4.1-alpine
 
-MAINTAINER Ben Reed
+MAINTAINER Ben Reed <https://github.com/codeblooded>
 
 ENV REDIS_URL=redis://redis_db:6379
 
