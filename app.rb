@@ -14,6 +14,8 @@ class App < Sinatra::Base
   set :environment, Sprockets::Environment.new
   environment.append_path("assets/stylesheets")
   environment.append_path("assets/javascripts")
+
+  # Allow Docker bindings
   set :bind, '0.0.0.0'
 
   get '/' do
