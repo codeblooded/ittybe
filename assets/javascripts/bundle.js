@@ -72,6 +72,7 @@ $(function() {
 
   const inputField = $('#input-field');
   inputField.focus();
+  
   inputField.on('paste', function(e) {
     shorten(e.originalEvent.clipboardData.getData('text'));
   });
