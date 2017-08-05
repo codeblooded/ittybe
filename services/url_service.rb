@@ -1,7 +1,8 @@
-require 'redis'
 require 'securerandom'
+require_relative 'redis_helper'
 
 class UrlService
+  include RedisHelper
 
   def create(long_url, short_path_length = 5)
     short_path = generate_short_path(short_path_length)
@@ -19,10 +20,6 @@ class UrlService
   end
 
   private
-
-  def redis
-    @redis ||= Redis.new(url: ENV['REDIS_URL'])
-  end
 
   def generate_short_path(length)
     short_path = ""

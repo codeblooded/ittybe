@@ -23,10 +23,12 @@ class App < Sinatra::Base
   end
 
   post '/shorten', provides: :json do
-    pass unless request.accept? 'application/json'
-    long_url = JSON.parse(request.body.read)['url']
-    long_url = "http://#{long_url}" unless long_url.start_with? 'http'
     begin
+      pass unless request.accept? 'application/json'
+      body = request.body.read
+      long_url = JSON.parse(body)['url']
+      long_url = "http://#{long_url}" unless long_url.start_with? 'http'
+
       # Check URL validity
       URI.parse(long_url)
 
@@ -42,11 +44,19 @@ class App < Sinatra::Base
         }
       }.to_json
       [200, {}, res]
-    rescue URI::InvalidURIError
+    rescue URI::InvalidURIError # bad url
       res = {
         error: {
           url: "#{params[:url]}",
           message: 'The format of this url appears invalid.'
+        }
+      }.to_json
+      [400, {}, res]
+    rescue JSON::ParserError # bad json
+      res = {
+        error: {
+          body: "#{body}",
+          message: 'The body passed is not valid JSON.'
         }
       }.to_json
       [400, {}, res]
