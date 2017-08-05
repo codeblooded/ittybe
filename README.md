@@ -1,6 +1,6 @@
 # [itty.be]
 
-<a href="https://vimeo.com/228435932?autoplay=true"><img src="http://i.imgur.com/mdjmAWv.png" width="400px" /></a>
+<img src="https://github.com/codeblooded/ittybe/blob/master/assets/images/demo.gif?raw=true" width="500px" />
 
 The [itty.be] project is a simple url shortener which values privacy. There's no analytics, ads, or tracking software of any kind.
 Literally, it's just a url shortener.
