@@ -6,7 +6,7 @@ function colorize(inputField, type, error) {
       'color': 'black'
     });
   } else {
-    if (type === 'warning') {
+    if (type === 'warn') {
       inputField.css({
         'background-color': '#fffec8',
         'border': '1px solid #e4d046',
@@ -25,20 +25,18 @@ function colorize(inputField, type, error) {
   }
 }
 
-function shorten(val) {
-  if (!val || val.length < 1) { return; }
+function isValidUrlRegex(url) {
+  const urlRegex = /^(?:(http|https)(?:(\:\/\/))){0,1}([A-Za-z0-9\-\_\.\~]+\.[A-Za-z0-9\-\_\.\~]+)(\/(.*))?$/;
+  return urlRegex.test(url);
+}
 
-  const inputField = $('#input-field');
-  const data = JSON.stringify({
-    url: val
-  });
-
+function shortenUrlOverAjax(inputField, val) {
   $.ajax({
     type: 'POST',
     url: 'shorten',
 
     dataType: 'json',
-    data: data,
+    data: JSON.stringify({ url: val }),
 
     timeout: 5000,
 
@@ -59,12 +57,31 @@ function shorten(val) {
       if (e.status == 400) {
         colorize(inputField, 'error', 'Please enter a correctly formatted url...');
       } else {
-        colorize(inputField, 'warning', "We're facing some problems. Please try again later...");
+        colorize(inputField, 'warn', "We're facing some problems. Please try again later...");
       }
 
       $('.copy-btn').hide();
     }
   });
+}
+
+function shorten(val) {
+  if (!val || val.length < 1) { return; }
+
+  const inputField = $('#input-field');
+  console.log(inputField);
+
+  if (isValidUrlRegex(val)) {
+    console.log(`Shortening url=${val}`);
+    shortenUrlOverAjax(inputField, val);
+  } else {
+    console.log('Url is not matching standard url');
+    inputField.css({
+      'background-color': '#ffc8c8',
+      'border': '1px solid #e44646',
+      'color': 'black'
+    });
+  }
 }
 
 $(function() {
@@ -102,14 +119,11 @@ $(function() {
     const key = e.keyCode || e.which;
     if (key == '13') {
       shorten(inputField.val());
-    }
-    if (inputField.val().length < 1) {
+    } else if (inputField.val().length < 1) {
       colorize(inputField, 'normal');
       $('.copy-btn').hide();
     }
   });
-
-
 
   console.log('Hola, Hacker! Welcome to the JavaScript console.\nThe itty.be project is actually open source.\nCheck it out at http://github.com/codeblooded/ittybe.');
 });
