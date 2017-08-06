@@ -68,11 +68,30 @@ function shorten(val) {
 }
 
 $(function() {
-  new Clipboard('.copy-btn');
+  const copyBtnSelector = '.copy-btn';
+  const copyBtn = $(copyBtnSelector);
+  const clipboard = new Clipboard(copyBtnSelector);
+
+  clipboard.on('success', function(e) {
+    copyBtn.html('<i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;It\'s all copied!');
+    copyBtn.css({
+      'background-color': '#30d140',
+      'color': 'white'
+    });
+  });
+
+  clipboard.on('error', function(e) {
+    copyBtn.html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;Try manual copy');
+    copyBtn.css({
+      'background-color': '#de4747',
+      'color': 'white'
+    });
+    inputField.select();
+  });
 
   const inputField = $('#input-field');
   inputField.focus();
-  
+
   inputField.on('paste', function(e) {
     shorten(e.originalEvent.clipboardData.getData('text'));
   });
