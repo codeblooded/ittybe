@@ -96,7 +96,7 @@ span.header-highlight {
     }
   }
 
-  &:hover {
+  &:hover, &:active {
     background-color: $highlight-color;
     color: white;
   }
