@@ -78,6 +78,7 @@ $(function() {
       'background-color': '#30d140',
       'color': 'white'
     });
+    console.log('Link successfully copied.');
   });
 
   clipboard.on('error', function(e) {
@@ -87,6 +88,7 @@ $(function() {
       'color': 'white'
     });
     inputField.select();
+    console.log('Link failed to copy copied.');
   });
 
   const inputField = $('#input-field');
